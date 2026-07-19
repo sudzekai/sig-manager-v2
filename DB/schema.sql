@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `SiGDB`.`positions` (
   `name` VARCHAR(50) NOT NULL,
   `price_per_hour` DECIMAL(5,2) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `position_name_UNIQUE` (`name` ASC) INVISIBLE)
+  UNIQUE INDEX `position_name_UNIQUE` (`name` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
