@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Roles
 {
     public record RoleDto(
-        int Id,
+        long Id,
         string Name
     );
 }

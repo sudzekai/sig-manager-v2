@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Parks
 {
     public record ParkSimpleDto(
-        int Id,
+        long Id,
         string Name
     );
 }

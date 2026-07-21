@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Cars
 {
     public record CarCreateDto(
-        int Id,
+        long Id,
         string Name,
         string ControllerModel
     );

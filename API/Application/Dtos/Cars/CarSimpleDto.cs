@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Cars
 {
     public record CarSimpleDto(
-        int Id,
+        long Id,
         string Name
     );
 }

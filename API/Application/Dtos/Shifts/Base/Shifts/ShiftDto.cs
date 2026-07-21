@@ -3,7 +3,7 @@
 namespace Application.Dtos.Shifts.Base.Shifts
 {
     public record ShiftDto(
-        int Id,
+        long Id,
         int ParkId,
         string Status,
         string Type,

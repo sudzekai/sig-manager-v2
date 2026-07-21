@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Positions
 {
     public record PositionSimpleDto(
-        int Id,
+        long Id,
         string Name
     );
 }

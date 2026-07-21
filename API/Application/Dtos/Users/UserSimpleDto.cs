@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Users
 {
     public record UserSimpleDto(
-        int Id,
+        long Id,
         string Username,
         string FullName
     );

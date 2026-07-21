@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Products
 {
     public record ProductSimpleDto(
-        int Id,
+        long Id,
         string Name
     );
 }

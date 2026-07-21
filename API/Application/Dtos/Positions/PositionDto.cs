@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Positions
 {
     public record PositionDto(
-        int Id,
+        long Id,
         string Name,
         decimal PricePerHour
     );

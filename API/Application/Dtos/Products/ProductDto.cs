@@ -1,7 +1,7 @@
 ﻿namespace Application.Dtos.Products
 {
     public record ProductDto(
-        int Id,
+        long Id,
         string Name,
         decimal Price
     );
