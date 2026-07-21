@@ -16,11 +16,11 @@ if "%PLATFORM%"=="" (
     exit /b 1
 )
 
-dotnet publish "C:\Users\yomak\Desktop\sig-manager-v2\API\Presentation\Presentation.csproj" ^
+dotnet publish ".\API\Presentation\Presentation.csproj" ^
 -c Release ^
 -r %PLATFORM% ^
 --self-contained ^
--o "C:\Users\yomak\Desktop\sig-manager-v2\Publish\API\v%VERSION%\%PLATFORM%"
+-o ".\Publish\API\v%VERSION%\%PLATFORM%"
 
 if errorlevel 1 (
     echo Publish error
