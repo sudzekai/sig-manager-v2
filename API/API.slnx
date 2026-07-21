@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Application/Application.csproj" Id="4dc5a3ce-cacc-4c67-a2ad-fadbbc09eea6" />
+  <Project Path="Presentation/Presentation.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+</Solution>
