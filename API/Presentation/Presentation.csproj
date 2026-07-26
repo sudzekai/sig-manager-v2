@@ -5,13 +5,11 @@
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<FileVersion>1.0.0.0</FileVersion>
 		
-		
 		<AssemblyName>SiG Manager API</AssemblyName>
 		<Authors>sudzekai</Authors>
 		
 		<TargetFramework>net10.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		<EnableNETAnalyzers>true</EnableNETAnalyzers>
 		<AnalysisLevel>latest</AnalysisLevel>
@@ -31,6 +29,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Application\Application.csproj" />
+	  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
 	  <ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 
