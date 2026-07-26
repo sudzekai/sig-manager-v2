@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.PopcornShifts;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Shifts.PopcornShifts
 {
-    public record PopcornShiftGetAllQuery : IQuery<PopcornShiftSimpleDto[]>;
+    public record PopcornShiftGetAllQuery(PopcornShiftListRequest Request) : IQuery;
 }

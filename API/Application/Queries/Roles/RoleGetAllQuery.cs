@@ -1,6 +1,7 @@
-﻿using Application.Dtos.Roles;
+﻿using Shared.Dtos.Requests.List;
+using Shared.Dtos.Roles;
 
 namespace Application.Queries.Roles
 {
-    public record RoleGetAllQuery : IQuery<RoleSimpleDto[]>;
+    public record RoleGetAllQuery(RoleListRequest Request) : IQuery;
 }

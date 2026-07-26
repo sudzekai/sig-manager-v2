@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Positions;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Positions
 {
-    public record PositionGetAllQuery : IQuery<PositionSimpleDto[]>;
+    public record PositionGetAllQuery(PositionListRequest Request) : IQuery;
 }

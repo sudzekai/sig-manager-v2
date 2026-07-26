@@ -1,7 +1,10 @@
 ﻿using Infrastructure.Context;
+using Infrastructure.Queries.Users;
+using Infrastructure.Repositories.Users;
 using Infrastructure.UOW;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SqlKata.Compilers;
 
 namespace Infrastructure.DI
 {
@@ -20,13 +23,16 @@ namespace Infrastructure.DI
 
         public static IServiceCollection AddRepositories(this IServiceCollection collection)
         {
+            collection.AddScoped<IUserRepository, UserRepository>();
+
             return collection;
         }
 
         public static IServiceCollection AddQueries(this IServiceCollection collection)
         {
-            return collection;
+            collection.AddScoped<IUsersQuery, UsersQuery>();
         
+            return collection;
         }
         public static IServiceCollection AddUnitOfWork(this IServiceCollection collection)
         {

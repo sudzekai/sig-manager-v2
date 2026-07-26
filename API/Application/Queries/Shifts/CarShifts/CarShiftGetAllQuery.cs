@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.CarShifts;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Shifts.CarShifts
 {
-    public record CarShiftGetAllQuery : IQuery<CarShiftSimpleDto[]>;
+    public record CarShiftGetAllQuery(CarShiftListRequest Request) : IQuery;
 }

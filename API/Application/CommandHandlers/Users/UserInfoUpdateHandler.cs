@@ -1,0 +1,49 @@
+﻿using Application.Commands.Users;
+using Domain.ValueObjects.Users;
+using Infrastructure.Queries.Users;
+using Infrastructure.Repositories.Users;
+using Shared.Dtos.Users;
+using Shared.Types.Errors;
+using Shared.Types.Exceptions;
+
+namespace Application.CommandHandlers.Users
+{
+    internal class UserInfoUpdateHandler(
+        IUserRepository repo,
+        IUsersQuery users
+    ) : ICommandHandler<UserInfoUpdateCommand, UserDto>
+    {
+        public async Task<UserDto> HandleAsync(UserInfoUpdateCommand command)
+        {
+            var user = await repo.GetAsync(UserId.FromValue(command.Id))
+                ?? throw new AppException(UserErrors.NotFound);
+
+            var dto = command.Dto;
+
+            var username = Username.FromValue(dto.Username);
+
+            if (await repo.GetByUsernameAsync(username) is not null)
+                throw new AppException(UserErrors.UsernameAlreadyExists);
+
+            var email = Email.FromValue(dto.Email);
+
+            if (await repo.GetByEmailAsync(email) is not null)
+                throw new AppException(UserErrors.EmailAlreadyExists);
+
+            var phoneNumber = PhoneNumber.FromValue(dto.PhoneNumber);
+
+            if (await repo.GetByPhoneNumberAsync(phoneNumber) is not null)
+                throw new AppException(UserErrors.PhoneNumberAlreadyExists);
+
+            user.ChangeUsername(username);
+            user.ChangeEmail(email);
+            user.ChangePhoneNumber(phoneNumber);
+            user.ChangeFullName(FullName.FromValue(dto.FullName));
+
+            await repo.UpdateAsync(user);
+
+            return await users.GetByIdAsync(user.Id)
+                ?? throw new AppException(UserErrors.NotFound);
+        }
+    }
+}

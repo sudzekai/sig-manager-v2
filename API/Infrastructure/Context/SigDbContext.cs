@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
+using SqlKata;
+using SqlKata.Compilers;
 using System.Data;
 using System.Data.Common;
-using System.Text;
 
 namespace Infrastructure.Context
 {
@@ -10,6 +11,8 @@ namespace Infrastructure.Context
     {
         private readonly ILogger<ISigDbContext> _logger;
         private readonly string _connectionString;
+
+        private static MySqlCompiler _compiler = new();
 
         private readonly MySqlConnection _connection;
         private MySqlTransaction? _transaction;
@@ -28,26 +31,18 @@ namespace Infrastructure.Context
             await connection.OpenAsync();
         }
 
-        public async Task<DbCommand> CreateCommandAsync(string query, DbParameter[]? parameters = null)
+        public async Task<DbCommand> CreateCommandAsync(Query query)
         {
             await EnsureConnectedAsync();
 
+            var compiled = _compiler.Compile(query);
+
             MySqlCommand command = _transaction is null
-                        ? new(query, _connection)
-                        : new(query, _connection, _transaction);
+                        ? new(compiled.Sql, _connection)
+                        : new(compiled.Sql, _connection, _transaction);
 
-            _logger.LogDebug("{query}", query);
-
-            if (parameters is not null)
-            {
-                command.Parameters.AddRange(parameters);
-
-                StringBuilder sb = new();
-                foreach (var param in parameters)
-                    sb.Append($"\n[{param.ParameterName}] = \"{param.Value}\"");
-
-                _logger.LogDebug(sb.ToString().Trim());
-            }
+            for (int i = 0; i < compiled.Bindings.Count; i++)
+                command.Parameters.AddWithValue($"@p{i}", compiled.Bindings[i]);
 
             return command;
         }

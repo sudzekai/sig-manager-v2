@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Parks;
+﻿using Shared.Dtos.Parks;
 
 namespace Application.Commands.Parks
 {
-    public record ParkCreateCommand(ParkCreateDto Dto) : ICommand<ParkDto>;
+    public record ParkCreateCommand(ParkCreateDto Dto) : ICommand;
 }

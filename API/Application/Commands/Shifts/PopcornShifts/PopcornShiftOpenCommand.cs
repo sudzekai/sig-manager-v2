@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.PopcornShifts;
+﻿using Shared.Dtos.Shifts.Types.PopcornShifts;
 
 namespace Application.Commands.Shifts.PopcornShifts
 {
-    public record PopcornShiftOpenCommand(PopcornShiftOpenDto Dto) : ICommand<PopcornShiftDto>;
+    public record PopcornShiftOpenCommand(PopcornShiftOpenDto Dto) : ICommand;
 }

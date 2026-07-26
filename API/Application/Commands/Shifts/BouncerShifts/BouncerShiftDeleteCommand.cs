@@ -2,5 +2,5 @@
 
 namespace Application.Commands.Shifts.BouncerShifts
 {
-    public record BouncerShiftDeleteCommand(long Id) : ICommand<Unit>;
+    public record BouncerShiftDeleteCommand(long Id) : ICommand;
 }

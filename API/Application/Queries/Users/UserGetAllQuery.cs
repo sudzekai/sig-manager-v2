@@ -1,6 +1,7 @@
-﻿using Application.Dtos.Users;
+﻿using Shared.Dtos.Requests.List;
+using Shared.Dtos.Users;
 
 namespace Application.Queries.Users
 {
-    public record UserGetAllQuery : IQuery<UserSimpleDto[]>;
+    public record UserGetAllQuery(UserListRequest Request) : IQuery;
 }

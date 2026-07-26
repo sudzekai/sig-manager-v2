@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.PopcornShifts;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Shifts.TrainShifts
 {
-    public record TrainShiftGetAllQuery : IQuery<PopcornShiftSimpleDto[]>;
+    public record TrainShiftGetAllQuery(TrainShiftListRequest Request) : IQuery;
 }

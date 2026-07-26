@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Cars;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Cars
 {
-    public record CarGetAllQuery : IQuery<CarSimpleDto[]>;
+    public record CarGetAllQuery(CarListRequest Request) : IQuery;
 }

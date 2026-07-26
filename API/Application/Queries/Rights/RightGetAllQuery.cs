@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Rights;
+﻿using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Rights
 {
-    public class RightGetAllQuery : IQuery<RightSimpleDto[]>;
+    public record RightGetAllQuery(RightListRequest Request) : IQuery;
 }

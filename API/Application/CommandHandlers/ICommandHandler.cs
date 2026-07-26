@@ -3,9 +3,9 @@
 namespace Application.CommandHandlers
 {
     public interface ICommandHandler<in TCommand, TResult>
-        where TCommand : ICommand<TResult>
+        where TCommand : ICommand
         where TResult : class
     {
-        Task<TResult> ExecuteAsync(TCommand command);
+        Task<TResult> HandleAsync(TCommand command);
     }
 }

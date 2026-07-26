@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Roles;
+﻿using Shared.Dtos.Roles;
 
 namespace Application.Commands.Roles
 {
-    public record RoleCreateCommand(RoleCreateDto Dto) : ICommand<RoleDto>;
+    public record RoleCreateCommand(RoleCreateDto Dto) : ICommand;
 }

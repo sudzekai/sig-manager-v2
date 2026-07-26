@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using SqlKata;
+using System.Data.Common;
 
 namespace Infrastructure.Context
 {
@@ -6,7 +7,7 @@ namespace Infrastructure.Context
     {
         Task BeginTransactionAsync();
         Task CommitAsync();
-        Task<DbCommand> CreateCommandAsync(string query, DbParameter[]? parameters = null);
+        Task<DbCommand> CreateCommandAsync(Query query);
         ValueTask DisposeAsync();
         Task RollBackAsync();
         Task TestConnectionAsync();

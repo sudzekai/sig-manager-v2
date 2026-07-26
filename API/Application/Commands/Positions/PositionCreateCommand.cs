@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Positions;
+﻿using Shared.Dtos.Positions;
 
 namespace Application.Commands.Positions
 {
-    public record PositionCreateCommand(PositionCreateDto Dto) : ICommand<PositionDto>;
+    public record PositionCreateCommand(PositionCreateDto Dto) : ICommand;
 }

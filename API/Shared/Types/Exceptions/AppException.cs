@@ -2,8 +2,18 @@
 
 namespace Shared.Types.Exceptions
 {
-    public class AppException(ErrorCode errorCode) : Exception
+    public class AppException : Exception
     {
-        public ErrorCode ErrorCode { get; } = errorCode;
+        public AppException(ErrorCode errorCode) : base()
+        {
+            ErrorCode = errorCode;
+        }
+
+        public AppException(ErrorCode errorCode, string message) : base(message)
+        {
+            ErrorCode = errorCode;
+        }
+
+        public ErrorCode ErrorCode { get; }
     }
 }

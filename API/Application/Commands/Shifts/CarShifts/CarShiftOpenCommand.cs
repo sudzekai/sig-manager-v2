@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.CarShifts;
+﻿using Shared.Dtos.Shifts.Types.CarShifts;
 
 namespace Application.Commands.Shifts.CarShifts
 {
-    public record CarShiftOpenCommand(CarShiftOpenDto Dto) : ICommand<CarShiftDto>;
+    public record CarShiftOpenCommand(CarShiftOpenDto Dto) : ICommand;
 }

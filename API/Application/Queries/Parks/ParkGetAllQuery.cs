@@ -1,6 +1,7 @@
-﻿using Application.Dtos.Parks;
+﻿using Shared.Dtos.Parks;
+using Shared.Dtos.Requests.List;
 
 namespace Application.Queries.Parks
 {
-    public record ParkGetAllQuery : IQuery<ParkSimpleDto[]>;
+    public record ParkGetAllQuery(ParkListRequest Request) : IQuery;
 }

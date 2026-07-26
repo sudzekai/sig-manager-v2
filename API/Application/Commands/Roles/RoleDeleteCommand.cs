@@ -2,5 +2,5 @@
 
 namespace Application.Commands.Roles
 {
-    public record RoleDeleteCommand(long Id) : ICommand<Unit>;
+    public record RoleDeleteCommand(long Id) : ICommand;
 }

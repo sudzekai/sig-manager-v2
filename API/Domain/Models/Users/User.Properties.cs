@@ -11,7 +11,7 @@ namespace Domain.Models.Users
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -26,7 +26,7 @@ namespace Domain.Models.Users
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -37,6 +37,8 @@ namespace Domain.Models.Users
 
         public void ChangeRoleId(long value)
             => RoleId = RoleId.FromValue(value);
+        public void ChangeRoleId(RoleId value)
+            => RoleId = value;
 
         public Username Username
         {
@@ -44,7 +46,7 @@ namespace Domain.Models.Users
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -56,13 +58,16 @@ namespace Domain.Models.Users
         public void ChangeUsername(string value)
             => Username = Username.FromValue(value);
 
+        public void ChangeUsername(Username value)
+            => Username = value;
+
         public FullName FullName
         {
             get;
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -74,13 +79,16 @@ namespace Domain.Models.Users
         public void ChangeFullName(string value)
             => FullName = FullName.FromValue(value);
 
+        public void ChangeFullName(FullName value)
+            => FullName = value;
+
         public Email Email
         {
             get;
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -92,13 +100,16 @@ namespace Domain.Models.Users
         public void ChangeEmail(string value)
             => Email = Email.FromValue(value);
 
+        public void ChangeEmail(Email value)
+            => Email = value;
+
         public PhoneNumber PhoneNumber
         {
             get;
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -110,13 +121,16 @@ namespace Domain.Models.Users
         public void ChangePhoneNumber(string value)
             => PhoneNumber = PhoneNumber.FromValue(value);
 
+        public void ChangePhoneNumber(PhoneNumber value)
+            => PhoneNumber = value;
+
         public PasswordHash PasswordHash
         {
             get;
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -128,6 +142,9 @@ namespace Domain.Models.Users
         public void ChangePasswordHash(string value)
             => PasswordHash = PasswordHash.FromValue(value);
 
+        public void ChangePasswordHash(PasswordHash value)
+            => PasswordHash = value;
+
 
         public VerificationCode VerificationCode
         {
@@ -135,7 +152,7 @@ namespace Domain.Models.Users
             private set
             {
                 if (field == value
-                    || !field.IsValid)
+                    || !value.IsValid)
                     return;
 
                 field = value;
@@ -146,6 +163,9 @@ namespace Domain.Models.Users
 
         public void ChangeVerificationCode(string value)
             => VerificationCode = VerificationCode.FromValue(value);
+
+        public void ChangeVerificationCode(VerificationCode value)
+            => VerificationCode = value;
 
         public void SetVerificationCodeEmpty()
             => VerificationCode = VerificationCode.Empty;

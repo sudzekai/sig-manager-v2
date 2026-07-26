@@ -2,5 +2,5 @@
 
 namespace Application.Commands.Shifts.CarouselShifts
 {
-    public record CarouselShiftDeleteCommand(long Id) : ICommand<Unit>;
+    public record CarouselShiftDeleteCommand(long Id) : ICommand;
 }

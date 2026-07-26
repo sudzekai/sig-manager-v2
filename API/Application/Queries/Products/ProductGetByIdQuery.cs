@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Products;
+﻿using Shared.Dtos.Products;
 
 namespace Application.Queries.Products
 {
-    public record ProductGetByIdQuery(long Id) : IQuery<ProductDto>;
+    public record ProductGetByIdQuery(long Id) : IQuery;
 }

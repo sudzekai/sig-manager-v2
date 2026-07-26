@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Shifts.Types.BouncerShifts;
+﻿using Shared.Dtos.Shifts.Types.BouncerShifts;
 
 namespace Application.Commands.Shifts.BouncerShifts
 {
-    public record BouncerShiftOpenCommand(BouncerShiftOpenDto Dto) : ICommand<BouncerShiftDto>;
+    public record BouncerShiftOpenCommand(BouncerShiftOpenDto Dto) : ICommand;
 }

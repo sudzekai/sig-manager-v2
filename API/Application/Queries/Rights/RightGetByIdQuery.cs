@@ -1,6 +1,6 @@
-﻿using Application.Dtos.Rights;
+﻿using Shared.Dtos.Rights;
 
 namespace Application.Queries.Rights
 {
-    public record RightGetByIdQuery(long Id) : IQuery<RightDto>;
+    public record RightGetByIdQuery(long Id) : IQuery;
 }
