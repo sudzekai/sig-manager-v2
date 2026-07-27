@@ -6,7 +6,7 @@ namespace Shared.Utilities.BusinessErrorFactory.Handlers.Objects
     {
         public static BusinessException Handle(AppException ex)
         {
-            var err = ex.ErrorCode;
+            var err = ex.Error;
 
             return BusinessException.Unknown(err.Code);
         }

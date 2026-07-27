@@ -23,7 +23,7 @@ namespace Presentation.Internal.Utilities.ExceptionHandler
                 {
                     if (current is AppException appException)
                     {
-                        LogCritical($"{appException.ErrorCode.Code}: {appException.ErrorCode.Key}" +
+                        LogCritical($"{appException.Error.Code}: {appException.Error.Key}" +
                             $"{(string.IsNullOrEmpty(appException.Message) ? "" : $" - {appException.Message}")}");
                         break;
                     }

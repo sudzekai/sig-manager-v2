@@ -29,7 +29,7 @@ namespace Shared.Utilities.BusinessErrorFactory.Handlers.Entities
         };
 
         public static BusinessException Handle(AppException ex)
-            => _errors.GetValueOrDefault(ex.ErrorCode)
-            ?? BusinessException.Unknown(ex.ErrorCode.Code);
+            => _errors.GetValueOrDefault(ex.Error)
+            ?? BusinessException.Unknown(ex.Error.Code);
     }
 }

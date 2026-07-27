@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Элементы решения/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="Application/Application.csproj" Id="4dc5a3ce-cacc-4c67-a2ad-fadbbc09eea6" />
   <Project Path="Domain/Domain.csproj" Id="f5af316a-d57f-4627-8c24-310655ddab92" />
   <Project Path="Infrastructure/Infrastructure.csproj" Id="a5f29be7-96f9-49c5-81ad-01c1e759cccd" />

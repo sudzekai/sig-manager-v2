@@ -22,7 +22,7 @@ namespace Presentation.Filters
 
             if (ex is AppException exception)
             {
-                _logger.LogError($"{exception.ErrorCode.Code}: {exception.ErrorCode.Key} {(string.IsNullOrEmpty(exception.Message) ? "" : $"- {exception.Message}")}");
+                _logger.LogError($"{exception.Error.Code}: {exception.Error.Key} {(string.IsNullOrEmpty(exception.Message) ? "" : $"- {exception.Message}")}");
 
                 context.Result = ResponseEnvelope.FromError(exception).ToErroredObjectResult();
 

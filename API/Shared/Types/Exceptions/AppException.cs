@@ -6,15 +6,15 @@ namespace Shared.Types.Exceptions
     {
         public AppException(AppError errorCode) : base()
         {
-            ErrorCode = errorCode;
+            Error = errorCode;
         }
 
         public AppException(AppError errorCode, string message) : base(message)
         {
-            ErrorCode = errorCode;
+            Error = errorCode;
         }
 
-        public AppError ErrorCode { get; }
+        public AppError Error { get; }
 
         public void Throw()
             => throw this;

@@ -23,14 +23,14 @@ namespace Shared.Types.Errors.Dictionaries.Internals
             _ = ServiceNotImplemented;
         }
 
-        public static readonly AppError Unknown =                   AppErrorFactory.CreateUnknown("INTERNAL",                           1_00);
+        public static readonly AppError Unknown =                   AppErrorFactory.CreateUnknown("INTERNAL",                           1_00_00);
 
-        public static readonly AppError ErrorCodeAlreadyExists =    AppErrorFactory.CreateAlreadyExists("INTERNAL.ERROR_CODE",          1_01);
-        public static readonly AppError ErrorKeyAlreadyExists =     AppErrorFactory.CreateAlreadyExists("INTERNAL.ERROR_KEY",           1_02);
+        public static readonly AppError ErrorCodeAlreadyExists =    AppErrorFactory.CreateAlreadyExists("INTERNAL.APP_ERROR.CODE",      1_01_01);
+        public static readonly AppError ErrorKeyAlreadyExists =     AppErrorFactory.CreateAlreadyExists("INTERNAL.APP_ERROR.KEY",       1_01_02);
 
-        public static readonly AppError ConfigVariableNotFound =    AppErrorFactory.CreateNotFound("INTERNAL.CONFIGURATION_VARIABLE",   1_03);
+        public static readonly AppError ConfigVariableNotFound =    AppErrorFactory.CreateNotFound("INTERNAL.CONFIGURATION_VARIABLE",   1_02_00);
 
-        public static readonly AppError ServiceNotFound =           AppErrorFactory.CreateNotFound("INTERNAL.SERVICE",                  1_04);
-        public static readonly AppError ServiceNotImplemented =     AppErrorFactory.CreateNotImplemented("INTERNAL.SERVICE",            1_04);
+        public static readonly AppError ServiceNotFound =           AppErrorFactory.CreateNotFound("INTERNAL.SERVICE",                  1_03_00);
+        public static readonly AppError ServiceNotImplemented =     AppErrorFactory.CreateNotImplemented("INTERNAL.SERVICE",            1_03_00);
     }
 }

@@ -10,14 +10,14 @@ namespace Shared.Utilities.BusinessErrorFactory
     {
         public static BusinessException ToBusinessException(AppException ex)
         {
-            int prefix = ex.ErrorCode.GetCodePrefix();
+            int prefix = ex.Error.GetCodePrefix();
 
             return prefix switch
             {
                 1 => HandleInternalError(ex),
                 2 => HandleEntitityError(ex),
                 3 => HandleObjectError(ex),
-                _ => new($"Неизвестная ошибка сервера. Код ошибки: {ex.ErrorCode.Code}", (int)HttpStatusCode.InternalServerError)
+                _ => new($"Неизвестная ошибка сервера. Код ошибки: {ex.Error.Code}", (int)HttpStatusCode.InternalServerError)
             };
         }
 
@@ -29,15 +29,15 @@ namespace Shared.Utilities.BusinessErrorFactory
 
         public static BusinessException HandleObjectError(AppException ex)
         {
-            int middle = ex.ErrorCode.GetCodeProperty();
+            int entity = ex.Error.GetCodeEntity();
 
-            if (middle is >= 1 and <= 8)
+            if (entity is 1)
                 return UserObjectErrorsHandler.Handle(ex);
 
-            if (middle is >= 9 and <= 11)
+            if (entity is 2)
                 return RoleObjectErrorsHandler.Handle(ex);
 
-            return new($"Неизвестная ошибка сервера. Код ошибки: {ex.ErrorCode.Code}", (int)HttpStatusCode.InternalServerError);
+            return BusinessException.Unknown(ex.Error.Code);
         }
     }
 }

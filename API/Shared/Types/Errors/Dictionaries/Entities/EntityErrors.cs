@@ -36,7 +36,7 @@ namespace Shared.Types.Errors.Dictionaries.Entities
             _ = CarouselShiftNotFound;
         }
 
-        public static readonly AppError UserNotFound =              AppErrorFactory.CreateNotFound($"ENTITY.USER",                      2_01_00);
+        public static readonly AppError UserNotFound =              AppErrorFactory.CreateNotFound($"ENTITY.USER",                          2_01_00);
         public static readonly AppError UserUsernameAlreadyExists =     AppErrorFactory.CreateAlreadyExists($"ENTITY.USER.USERNAME",        2_01_02);
         public static readonly AppError UserEmailAlreadyExists =        AppErrorFactory.CreateAlreadyExists($"ENTITY.USER.EMAIL",           2_01_03);
         public static readonly AppError UserPhoneNumberAlreadyExists =  AppErrorFactory.CreateAlreadyExists($"ENTITY.USER.PHONE_NUMBER",    2_01_06);
