@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace Domain.ValueObjects.Users
             get
             {
                 if (string.IsNullOrWhiteSpace(Value))
-                    throw new AppException(UserErrors.PasswordIsRequired);
+                    throw new AppException(UserObjectErrors.PasswordIsRequired);
 
                 return true;
             }

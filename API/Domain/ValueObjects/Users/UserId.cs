@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
@@ -29,7 +29,7 @@ namespace Domain.ValueObjects.Users
                     return true;
 
                 if (Value < 1)
-                    throw new AppException(UserErrors.IdIsInvalid);
+                    throw new AppException(UserObjectErrors.UserIdIsToSmall);
 
                 return true;
             }

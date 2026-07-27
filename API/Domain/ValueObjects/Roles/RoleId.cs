@@ -1,5 +1,6 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Entities;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Roles
@@ -29,7 +30,7 @@ namespace Domain.ValueObjects.Roles
                     return true;
 
                 if (Value < 1)
-                    throw new AppException(RoleErrors.IdIsInvalid);
+                    throw new AppException(RoleObjectErrors.RoleIdIsToSmall);
 
                 return true;
             }

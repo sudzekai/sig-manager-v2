@@ -1,19 +1,22 @@
-﻿using Shared.Types.Errors;
+﻿using Shared.Types.Errors.ApplicationError;
 
 namespace Shared.Types.Exceptions
 {
     public class AppException : Exception
     {
-        public AppException(ErrorCode errorCode) : base()
+        public AppException(AppError errorCode) : base()
         {
             ErrorCode = errorCode;
         }
 
-        public AppException(ErrorCode errorCode, string message) : base(message)
+        public AppException(AppError errorCode, string message) : base(message)
         {
             ErrorCode = errorCode;
         }
 
-        public ErrorCode ErrorCode { get; }
+        public AppError ErrorCode { get; }
+
+        public void Throw()
+            => throw this;
     }
 }

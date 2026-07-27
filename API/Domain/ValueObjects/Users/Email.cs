@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
@@ -19,13 +19,13 @@ namespace Domain.ValueObjects.Users
             get
             {
                 if (string.IsNullOrWhiteSpace(Value))
-                    throw new AppException(UserErrors.EmailIsRequired);
+                    throw new AppException(UserObjectErrors.EmailIsRequired);
 
                 if (Value.Length < 5)
-                    throw new AppException(UserErrors.EmailIsInvalidLength);
+                    throw new AppException(UserObjectErrors.EmailIsInvalidLength);
 
                 if (Value.Length > 255)
-                    throw new AppException(UserErrors.EmailIsInvalidLength);
+                    throw new AppException(UserObjectErrors.EmailIsInvalidLength);
 
                 return true;
             }

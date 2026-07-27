@@ -1,6 +1,6 @@
 ﻿using Application.Queries;
 using Application.QueryHandlers;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Internals;
 using Shared.Types.Exceptions;
 
 namespace Application.Orchestrators.Queries

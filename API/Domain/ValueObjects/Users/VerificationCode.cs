@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
@@ -22,10 +22,10 @@ namespace Domain.ValueObjects.Users
                     return true;
 
                 if (string.IsNullOrWhiteSpace(Value))
-                    throw new AppException(UserErrors.VerificationCodeIsRequired);
+                    throw new AppException(UserObjectErrors.VerificationCodeIsRequired);
 
                 if (Value.Length != 6)
-                    throw new AppException(UserErrors.VerificationCodeIsInvalidLength);
+                    throw new AppException(UserObjectErrors.VerificationCodeIsInvalidLength);
 
                 return true;
             }

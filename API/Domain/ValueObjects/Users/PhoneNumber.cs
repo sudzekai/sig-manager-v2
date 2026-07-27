@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
@@ -23,13 +23,13 @@ namespace Domain.ValueObjects.Users
             get
             {
                 if (string.IsNullOrWhiteSpace(Value))
-                    throw new AppException(UserErrors.PhoneNumberIsRequired);
+                    throw new AppException(UserObjectErrors.PhoneNumberIsRequired);
 
                 if (Value.Length != 12)
-                    throw new AppException(UserErrors.PhoneNumberIsInvalidLength);
+                    throw new AppException(UserObjectErrors.PhoneNumberIsInvalidLength);
 
                 if (!Value.StartsWith("+79") || !Value.Replace("+79", "").All(char.IsDigit))
-                    throw new AppException(UserErrors.PhoneNumberIsInvalid);
+                    throw new AppException(UserObjectErrors.PhoneNumberIsInvalid);
 
                 return true;
             }

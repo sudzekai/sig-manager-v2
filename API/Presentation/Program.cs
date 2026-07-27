@@ -8,6 +8,9 @@ using Presentation.Filters;
 using Presentation.Internal.Extensions;
 using Presentation.Internal.Utilities.ExceptionHandler;
 using Presentation.Internal.Utilities.Logging;
+using Shared.Types.Errors.Dictionaries.Entities;
+using Shared.Types.Errors.Dictionaries.Internals;
+using Shared.Types.Errors.Dictionaries.Objects;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -18,6 +21,11 @@ namespace Presentation
         public static async Task Main(string[] args)
         {
             GlobalExceptionHandler.Register();
+
+            InternalErrors.Initialize();
+            EntityErrors.Initialize();
+            UserObjectErrors.Initialize();
+            RoleObjectErrors.Initialize();
 
             var builder = WebApplication.CreateBuilder(args);
 

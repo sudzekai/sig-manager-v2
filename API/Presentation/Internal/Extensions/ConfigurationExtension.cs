@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Internals;
 using Shared.Types.Exceptions;
 
 namespace Presentation.Internal.Extensions

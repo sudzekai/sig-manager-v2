@@ -11,7 +11,7 @@ namespace Shared.Types.Exceptions
 
         public int Code { get; }
 
-        public static BusinessException Unknown
-            => new BusinessException("Непредвиденная ошибка сервера", (int)HttpStatusCode.InternalServerError);
+        public static BusinessException Unknown(int code)
+            => new($"Непредвиденная ошибка сервера. Код ошибки: {code}", (int)HttpStatusCode.InternalServerError);
     }
 }

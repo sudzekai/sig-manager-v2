@@ -17,10 +17,19 @@ namespace Presentation.Internal.Utilities.ExceptionHandler
         {
             if (e.ExceptionObject is Exception ex)
             {
-                if (ex is AppException exception)
-                    LogCritical($"{exception.ErrorCode.Code}: {exception.ErrorCode.Key} {(string.IsNullOrEmpty(exception.Message) ? "" : $"- { exception.Message}")}");
-                else
-                    LogCritical($"{ex.GetType().ToString().Split(".").Last()}: {ex.Message}");
+                Exception? current = ex;
+
+                while (current is not null)
+                {
+                    if (current is AppException appException)
+                    {
+                        LogCritical($"{appException.ErrorCode.Code}: {appException.ErrorCode.Key}" +
+                            $"{(string.IsNullOrEmpty(appException.Message) ? "" : $" - {appException.Message}")}");
+                        break;
+                    }
+
+                    current = current.InnerException;
+                }
             }
 
             LogInfo("Приложение остановлено");

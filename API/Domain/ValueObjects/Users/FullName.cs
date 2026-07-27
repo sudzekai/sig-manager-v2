@@ -1,5 +1,5 @@
 ﻿using Domain.ValueObjects.Base;
-using Shared.Types.Errors;
+using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
@@ -19,13 +19,13 @@ namespace Domain.ValueObjects.Users
             get
             {
                 if (string.IsNullOrWhiteSpace(Value))
-                    throw new AppException(UserErrors.FullNameIsRequired);
+                    throw new AppException(UserObjectErrors.FullNameIsRequired);
 
                 if (Value.Length > 255)
-                    throw new AppException(UserErrors.FullNameIsInvalidLength);
+                    throw new AppException(UserObjectErrors.FullNameIsInvalidLength);
 
                 if (Value.Any(char.IsDigit))
-                    throw new AppException(UserErrors.FullNameIsInvalid);
+                    throw new AppException(UserObjectErrors.FullNameIsInvalid);
 
                 return true;
             }

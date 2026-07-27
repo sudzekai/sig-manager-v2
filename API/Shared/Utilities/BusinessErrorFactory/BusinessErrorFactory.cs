@@ -1,5 +1,8 @@
 ﻿using Shared.Types.Exceptions;
-using Shared.Utilities.BusinessErrorFactory.Handlers;
+using Shared.Utilities.BusinessErrorFactory.Handlers.Entities;
+using Shared.Utilities.BusinessErrorFactory.Handlers.Internals;
+using Shared.Utilities.BusinessErrorFactory.Handlers.Objects;
+using System.Net;
 
 namespace Shared.Utilities.BusinessErrorFactory
 {
@@ -7,14 +10,34 @@ namespace Shared.Utilities.BusinessErrorFactory
     {
         public static BusinessException ToBusinessException(AppException ex)
         {
-            int entity = ex.ErrorCode.Code / 1_00_00;
+            int prefix = ex.ErrorCode.GetCodePrefix();
 
-            return entity switch
+            return prefix switch
             {
-                2 => UserErrorsHandler.Handle(ex),
-                3 => RoleErrorsHandler.Handle(ex),
-                _ => InternalErrorsHandler.Handle(ex)
+                1 => HandleInternalError(ex),
+                2 => HandleEntitityError(ex),
+                3 => HandleObjectError(ex),
+                _ => new($"Неизвестная ошибка сервера. Код ошибки: {ex.ErrorCode.Code}", (int)HttpStatusCode.InternalServerError)
             };
+        }
+
+        public static BusinessException HandleInternalError(AppException ex)
+            => InternalErrorsHandler.Handle(ex);
+
+        public static BusinessException HandleEntitityError(AppException ex)
+            => EntityErrorsHandler.Handle(ex);
+
+        public static BusinessException HandleObjectError(AppException ex)
+        {
+            int middle = ex.ErrorCode.GetCodeProperty();
+
+            if (middle is >= 1 and <= 8)
+                return UserObjectErrorsHandler.Handle(ex);
+
+            if (middle is >= 9 and <= 11)
+                return RoleObjectErrorsHandler.Handle(ex);
+
+            return new($"Неизвестная ошибка сервера. Код ошибки: {ex.ErrorCode.Code}", (int)HttpStatusCode.InternalServerError);
         }
     }
 }
