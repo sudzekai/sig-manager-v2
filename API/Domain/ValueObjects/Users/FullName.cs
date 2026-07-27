@@ -4,25 +4,36 @@ using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
 {
-    public record FullName : ValueObjectBase
+    public record FullName : ValueObjectBase, IValueObject<FullName, string>
     {
-        public readonly string Value;
+        private FullName() : base(true) { }
 
-        private FullName(string value) 
+        private FullName(string value) : base(false)
             => Value = value;
         
         public static FullName FromValue(string value)
             => new(value);
+        
+        public static FullName Default 
+            => new();
 
-        public override bool IsValid
+        public string Value { get; } = string.Empty;
+
+        public bool IsValid
         {
             get
             {
+                if (IsDefault)
+                    return true;
+
                 if (string.IsNullOrWhiteSpace(Value))
                     throw new AppException(UserObjectErrors.FullNameIsRequired);
 
+                if (Value.Length < 2)
+                    throw new AppException(UserObjectErrors.FullNameIsInvalidTooSmall);
+
                 if (Value.Length > 255)
-                    throw new AppException(UserObjectErrors.FullNameIsInvalidLength);
+                    throw new AppException(UserObjectErrors.FullNameIsInvalidTooLarge);
 
                 if (Value.Any(char.IsDigit))
                     throw new AppException(UserObjectErrors.FullNameIsInvalid);

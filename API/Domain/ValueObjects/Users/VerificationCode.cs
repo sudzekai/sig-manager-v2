@@ -4,20 +4,31 @@ using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
 {
-    public record VerificationCode : ValueObjectBase
+    public record VerificationCode : ValueObjectBase, IValueObject<VerificationCode, string>
     {
-        public readonly string Value;
+        private VerificationCode() : base(true) { }
 
-        private VerificationCode(string value)
+        private VerificationCode(string value) : base(false)
             => Value = value;
 
         public static VerificationCode FromValue(string value)
             => new(value);
 
-        public override bool IsValid
+        public static VerificationCode Default
+            => new();
+
+        public static VerificationCode Empty
+            => new("empty");
+
+        public string Value { get; } = string.Empty;
+
+        public bool IsValid
         {
             get
             {
+                if (IsDefault)
+                    return true;
+
                 if (this == Empty)
                     return true;
 
@@ -30,7 +41,5 @@ namespace Domain.ValueObjects.Users
                 return true;
             }
         }
-
-        public static readonly VerificationCode Empty = new("empty");
     }
 }

@@ -38,8 +38,6 @@ namespace Domain.Models.Users
             PasswordHash passwordHash,
             RoleId roleId)
         {
-            Id = UserId.Default;
-
             Username = username;
             FullName = fullName;
             Email = email;
@@ -47,8 +45,6 @@ namespace Domain.Models.Users
             PasswordHash = passwordHash;
             RoleId = roleId;
             VerificationCode = VerificationCode.Empty;
-
-            CreatedAt = DateTime.Now;
 
             _initialized = true;
         }

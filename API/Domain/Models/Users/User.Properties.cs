@@ -18,7 +18,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = UserId.Default;
 
         public RoleId RoleId
         {
@@ -33,7 +33,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = RoleId.Default;
 
         public void ChangeRoleId(long value)
             => RoleId = RoleId.FromValue(value);
@@ -53,7 +53,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = Username.Default;
 
         public void ChangeUsername(string value)
             => Username = Username.FromValue(value);
@@ -74,7 +74,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = FullName.Default;
 
         public void ChangeFullName(string value)
             => FullName = FullName.FromValue(value);
@@ -95,7 +95,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = Email.Default;
 
         public void ChangeEmail(string value)
             => Email = Email.FromValue(value);
@@ -116,7 +116,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = PhoneNumber.Default;
 
         public void ChangePhoneNumber(string value)
             => PhoneNumber = PhoneNumber.FromValue(value);
@@ -137,7 +137,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = PasswordHash.Default;
 
         public void ChangePasswordHash(string value)
             => PasswordHash = PasswordHash.FromValue(value);
@@ -159,7 +159,7 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = VerificationCode.Default;
 
         public void ChangeVerificationCode(string value)
             => VerificationCode = VerificationCode.FromValue(value);
@@ -182,6 +182,6 @@ namespace Domain.Models.Users
 
                 OnPropertyChanged();
             }
-        }
+        } = default;
     }
 }

@@ -4,24 +4,31 @@ using Shared.Types.Exceptions;
 
 namespace Domain.ValueObjects.Users
 {
-    public record PhoneNumber : ValueObjectBase
+    public record PhoneNumber : ValueObjectBase, IValueObject<PhoneNumber, string>
     {
-        public readonly string Value;
-        public readonly string LastFour;
+        private PhoneNumber() : base(true) { }
 
-        private PhoneNumber(string value)
-        {
-            Value = value;
-            LastFour = value[^4..];
-        }
+        private PhoneNumber(string value) : base(false)
+            => Value = value;
 
         public static PhoneNumber FromValue(string value)
            => new(value);
 
-        public override bool IsValid
+        public static PhoneNumber Default 
+            => new();
+
+        public string Value { get; } = string.Empty;
+
+        public string LastFour
+            => Value[^4..];
+
+        public bool IsValid
         {
             get
             {
+                if (IsDefault)
+                    return true;
+
                 if (string.IsNullOrWhiteSpace(Value))
                     throw new AppException(UserObjectErrors.PhoneNumberIsRequired);
 

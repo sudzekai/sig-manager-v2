@@ -1,26 +1,31 @@
 ﻿using Domain.ValueObjects.Base;
 using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.ValueObjects.Users
 {
-    public record PasswordHash : ValueObjectBase
+    public record PasswordHash : ValueObjectBase, IValueObject<PasswordHash, string>
     {
-        public readonly string Value;
+        private PasswordHash() : base(true) { }
 
-        private PasswordHash(string value) 
+        private PasswordHash(string value) : base(false)
             => Value = value;
 
         public static PasswordHash FromValue(string value)
             => new(value);
 
-        public override bool IsValid
-        { 
+        public static PasswordHash Default 
+            => new();
+
+        public string Value { get; } = string.Empty;
+
+        public bool IsValid
+        {
             get
             {
+                if (IsDefault)
+                    return true;
+
                 if (string.IsNullOrWhiteSpace(Value))
                     throw new AppException(UserObjectErrors.PasswordIsRequired);
 

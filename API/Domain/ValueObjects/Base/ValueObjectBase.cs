@@ -2,6 +2,11 @@
 {
     public abstract record ValueObjectBase
     {
-        public abstract bool IsValid { get; }
+        public bool IsDefault { get; }
+
+        public ValueObjectBase(bool isDefault)
+        {
+            IsDefault = isDefault;
+        }
     }
 }

@@ -2,19 +2,19 @@
 using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
-namespace Domain.ValueObjects.Roles
+namespace Domain.ValueObjects.Positions
 {
-    public record RoleId : ValueObjectBase, IValueObject<RoleId, long>
+    public record PositionId : ValueObjectBase, IValueObject<PositionId, long>
     {
-        private RoleId() : base(false) { }
+        private PositionId() : base(true) { }
 
-        private RoleId(long value) : base(false)
+        private PositionId(long value) : base(false)
             => Value = value;
 
-        public static RoleId FromValue(long value)
+        public static PositionId FromValue(long value)
             => new(value);
-
-        public static RoleId Default 
+        
+        public static PositionId Default 
             => new();
 
         public long Value { get; } = default;
@@ -27,7 +27,7 @@ namespace Domain.ValueObjects.Roles
                     return true;
 
                 if (Value < 1)
-                    throw new AppException(RoleObjectErrors.RoleIdIsToSmall);
+                    throw new AppException(PositionObjectErrors.PositionIdIsToSmall);
 
                 return true;
             }

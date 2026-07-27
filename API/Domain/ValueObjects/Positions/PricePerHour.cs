@@ -2,24 +2,22 @@
 using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 
-namespace Domain.ValueObjects.Users
+namespace Domain.ValueObjects.Positions
 {
-    public record UserId : ValueObjectBase, IValueObject<UserId, long>
+    public record PricePerHour : ValueObjectBase, IValueObject<PricePerHour, decimal>
     {
-        private UserId() : base(false) { }
+        private PricePerHour() : base(true) { }
 
-        private UserId(long value) : base(false)
-        {
-            Value = value;
-        }
+        private PricePerHour(decimal value) : base(false)
+            => Value = value;
 
-        public static UserId FromValue(long value)
+        public static PricePerHour FromValue(decimal value)
             => new(value);
-
-        public static UserId Default
+        
+        public static PricePerHour Default
             => new();
 
-        public long Value { get; } = default;
+        public decimal Value { get; } = default;
 
         public bool IsValid
         {
