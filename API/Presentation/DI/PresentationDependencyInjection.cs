@@ -2,32 +2,33 @@
 using Infrastructure.DI;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Presentation.Filters;
 
 namespace Presentation.DI
 {
     public static class PresentationDependencyInjection
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection collection, string connectionString)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, string connectionString)
         {
-            collection.AddDatabase(connectionString);
-            collection.AddUnitOfWork();
+            services.AddDatabase(connectionString);
+            services.AddUnitOfWork();
 
-            collection.AddRepositories();
-            InfrastructureDependencyInjection.AddQueries(collection);
+            services.AddRepositories();
+            InfrastructureDependencyInjection.AddQueries(services);
 
-            return collection;
+            return services;
         }
 
-        public static IServiceCollection AddApplicationServices(this IServiceCollection collection)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, ILogger logger)
         {
-            collection.AddCommandDispatcher();
-            collection.AddCommands();
+            services.AddCommandDispatcher();
+            services.AddCommandHandlers(logger);
             
-            collection.AddQueryDispatcher();
-            DependencyInjection.AddQueries(collection);
+            services.AddQueryDispatcher();
+            services.AddQueryHandlers(logger);
 
-            return collection;
+            return services;
         }
 
         public static IServiceCollection AddFilters(this IServiceCollection services)

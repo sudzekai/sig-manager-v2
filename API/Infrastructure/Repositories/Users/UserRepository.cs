@@ -83,7 +83,7 @@ namespace Infrastructure.Repositories.Users
             return null;
         }
 
-        public async Task<UserId?> GetByEmailAsync(Email email)
+        public async Task<UserId?> GetIdByEmailAsync(Email email)
         {
             var query = new Query("users")
                 .Select("id")
@@ -100,7 +100,7 @@ namespace Infrastructure.Repositories.Users
                 : UserId.FromValue(Convert.ToInt64(idObj));
         }
 
-        public async Task<UserId?> GetByPhoneNumberAsync(PhoneNumber phoneNumber)
+        public async Task<UserId?> GetIdByPhoneNumberAsync(PhoneNumber phoneNumber)
         {
             var query = new Query("users")
                 .Select("id")
@@ -117,7 +117,7 @@ namespace Infrastructure.Repositories.Users
                 : UserId.FromValue(Convert.ToInt64(idObj));
         }
 
-        public async Task<UserId?> GetByUsernameAsync(Username username)
+        public async Task<UserId?> GetIdByUsernameAsync(Username username)
         {
             var query = new Query("users")
                 .Select("id")

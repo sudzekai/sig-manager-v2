@@ -22,17 +22,9 @@ namespace Presentation.Filters
 
             if (ex is AppException exception)
             {
-                _logger.LogError($"{exception.Error.Code}: {exception.Error.Key} {(string.IsNullOrEmpty(exception.Message) ? "" : $"- {exception.Message}")}");
+                _logger.LogError(exception.ToString());
 
                 context.Result = ResponseEnvelope.FromError(exception).ToErroredObjectResult();
-
-                return;
-            }
-
-            if (ex is NotImplementedException notImplemented)
-            {
-                context.Result = ResponseEnvelope.NotImplementedError.ToErroredObjectResult();
-                _logger.LogError("{Type}: {Message}\n{Full}", ex.GetType().ToString().Split(".").Last(), ex.Message, ex.ToString());
 
                 return;
             }

@@ -9,9 +9,7 @@ namespace Domain.ValueObjects.Users
         private UserId() : base(false) { }
 
         private UserId(long value) : base(false)
-        {
-            Value = value;
-        }
+            => Value = value;
 
         public static UserId FromValue(long value)
             => new(value);

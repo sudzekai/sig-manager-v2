@@ -4,9 +4,9 @@ namespace Shared.Types.Exceptions
 {
     public class AppException : Exception
     {
-        public AppException(AppError errorCode) : base()
+        public AppException(AppError error) : base()
         {
-            Error = errorCode;
+            Error = error;
         }
 
         public AppException(AppError errorCode, string message) : base(message)
@@ -18,5 +18,8 @@ namespace Shared.Types.Exceptions
 
         public void Throw()
             => throw this;
+
+        public override string ToString()
+            => $"{Error.Code}: {Error.Key} | Message: {Message}";
     }
 }

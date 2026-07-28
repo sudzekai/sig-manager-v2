@@ -17,7 +17,7 @@ namespace Domain.ValueObjects.Users
         public static Email Default 
             => new();
 
-        public string Value { get; } = String.Empty;
+        public string Value { get; } = string.Empty;
 
         public bool IsValid
         {

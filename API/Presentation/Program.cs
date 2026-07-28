@@ -8,9 +8,8 @@ using Presentation.Filters;
 using Presentation.Internal.Extensions;
 using Presentation.Internal.Utilities.ExceptionHandler;
 using Presentation.Internal.Utilities.Logging;
-using Shared.Types.Errors.Dictionaries.Entities;
-using Shared.Types.Errors.Dictionaries.Internals;
-using Shared.Types.Errors.Dictionaries.Objects;
+using Shared.Types.Errors.Dictionaries;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -22,47 +21,64 @@ namespace Presentation
         {
             GlobalExceptionHandler.Register();
 
-            InternalErrors.Initialize();
-            EntityErrors.Initialize();
-            UserObjectErrors.Initialize();
-            RoleObjectErrors.Initialize();
+            ErrorDictionariesChecker.Check();
 
             var builder = WebApplication.CreateBuilder(args);
 
-            // infrastructure
-            var connectionString = builder.Configuration.GetString("ConnectionStrings:Default");
-
-            builder.Services.AddInfrastructureServices(connectionString);
-
-            builder.Services.AddLogging(logging =>
+            using (var loggerFactory = LoggerFactory.Create(log =>
             {
-                logging.AddConsole(options =>
+                log.AddConsole(o =>
                 {
-                    options.FormatterName = "custom";
+                    o.FormatterName = "custom";
                 });
 
-                logging.AddConsoleFormatter<LogFormatter, ConsoleFormatterOptions>();
-
-                logging.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None);
-            });
-
-            // app
-            builder.Services.AddApplicationServices();
-
-            // presentation
-            builder.Services.AddFilters();
-            builder.Services.AddControllers(o =>
+                log.AddConsoleFormatter<LogFormatter, ConsoleFormatterOptions>();
+            }))
             {
-                o.Filters.Add<ExceptionsFilter>();
-            })
-            .ConfigureApiBehaviorOptions(options =>
-            {
-                options.SuppressModelStateInvalidFilter = true;
-            });
+                var logger = loggerFactory.CreateLogger("DI");
+
+                // infrastructure
+                var connectionString = builder.Configuration.GetString("ConnectionStrings:Default");
+
+                builder.Services.AddInfrastructureServices(connectionString);
+
+                builder.Services.AddLogging(logging =>
+                {
+                    logging.AddConsole(options =>
+                    {
+                        options.FormatterName = "custom";
+                    });
+
+                    logging.AddConsoleFormatter<LogFormatter, ConsoleFormatterOptions>();
+
+                    logging.AddFilter("Microsoft.Hosting.Lifetime", LogLevel.None);
+                });
+
+                // app
+                builder.Services.AddApplicationServices(logger);
+
+                // presentation
+                builder.Services.AddFilters();
+                builder.Services.AddControllers(o =>
+                {
+                    o.Filters.Add<ExceptionsFilter>();
+                })
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.SuppressModelStateInvalidFilter = true;
+                });
+            }
+            
+            
 
             builder.Services.AddOpenApi();
 
-            var app = builder.Build();
+            WebApplication? app = null;
+
+            app = builder.Build();
+
+            if (app is null)
+                return;
 
             app.UseAppLifetimeLogging();
 

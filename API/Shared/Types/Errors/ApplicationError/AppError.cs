@@ -1,4 +1,5 @@
 ﻿using Shared.Internal;
+using Shared.Types.Errors.ApplicationError.Dictionaries;
 using Shared.Types.Errors.Dictionaries.Internals;
 using Shared.Types.Exceptions;
 
@@ -50,10 +51,11 @@ namespace Shared.Types.Errors.ApplicationError
         }
 
         public int GetCodePrefix()
-            => Code / 10_000;
+            => Code / 1_000_000;
 
         public int GetCodeEntity()
-            => (Code / 100) % 100;
+            => (Code / 10_000) % 100;
+
         public int GetCodeProperty()
             => (Code / 100) % 100;
 

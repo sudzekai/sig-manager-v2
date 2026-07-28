@@ -34,10 +34,10 @@ namespace Domain.Models.Roles
             }
         } = Name.Default;
 
-        public void ChangeRoleName(string value)
+        public void ChangeName(string value)
             => Name = Name.FromValue(value);
 
-        public void ChangeRoleName(Name value)
+        public void ChangeName(Name value)
             => Name = value;
 
         public DateTime CreatedAt

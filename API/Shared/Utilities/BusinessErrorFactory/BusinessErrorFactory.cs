@@ -21,17 +21,17 @@ namespace Shared.Utilities.BusinessErrorFactory
             };
         }
 
-        public static BusinessException HandleInternalError(AppException ex)
+        private static BusinessException HandleInternalError(AppException ex)
             => InternalErrorsHandler.Handle(ex);
 
-        public static BusinessException HandleEntitityError(AppException ex)
+        private static BusinessException HandleEntitityError(AppException ex)
             => EntityErrorsHandler.Handle(ex);
 
-        public static BusinessException HandleObjectError(AppException ex)
+        private static BusinessException HandleObjectError(AppException ex)
         {
             int entity = ex.Error.GetCodeEntity();
 
-            if (entity is 1)
+            if (entity is 12)
                 return UserObjectErrorsHandler.Handle(ex);
 
             if (entity is 2)

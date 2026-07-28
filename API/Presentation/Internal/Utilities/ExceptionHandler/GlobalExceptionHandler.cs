@@ -16,24 +16,51 @@ namespace Presentation.Internal.Utilities.ExceptionHandler
         private static void OnUnhandledException(object? sender, UnhandledExceptionEventArgs e)
         {
             if (e.ExceptionObject is Exception ex)
-            {
-                Exception? current = ex;
-
-                while (current is not null)
-                {
-                    if (current is AppException appException)
-                    {
-                        LogCritical($"{appException.Error.Code}: {appException.Error.Key}" +
-                            $"{(string.IsNullOrEmpty(appException.Message) ? "" : $" - {appException.Message}")}");
-                        break;
-                    }
-
-                    current = current.InnerException;
-                }
-            }
+                LogException(ex);
 
             LogInfo("Приложение остановлено");
             Environment.Exit(-1);
+        }
+
+        private static void LogException(Exception exception)
+        {
+            if (exception is AggregateException aggregate)
+            {
+                LogCritical("Обнаружено несколько ошибок:");
+
+                foreach (var inner in aggregate.Flatten().InnerExceptions)
+                    LogSingleException(inner);
+
+                return;
+            }
+
+            LogSingleException(exception);
+        }
+
+        private static void LogSingleException(Exception exception)
+        {
+            var appException = GetAppException(exception);
+
+            if (appException is not null)
+            {
+                LogCritical(appException.ToString());
+                return;
+            }
+
+            LogCritical($"{exception.GetType().Name}: {exception.Message}");
+        }
+
+        private static AppException? GetAppException(Exception? exception)
+        {
+            while (exception is not null)
+            {
+                if (exception is AppException appException)
+                    return appException;
+
+                exception = exception.InnerException;
+            }
+
+            return null;
         }
 
         private static void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)

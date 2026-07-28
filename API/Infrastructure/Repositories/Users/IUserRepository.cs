@@ -8,9 +8,9 @@ namespace Infrastructure.Repositories.Users
         Task<UserId> AddAsync(User user);
         Task<bool> DeleteAsync(UserId id);
         Task<User?> GetAsync(UserId id);
-        Task<UserId?> GetByEmailAsync(Email email);
-        Task<UserId?> GetByUsernameAsync(Username username);
-        Task<UserId?> GetByPhoneNumberAsync(PhoneNumber phoneNumber);
+        Task<UserId?> GetIdByEmailAsync(Email email);
+        Task<UserId?> GetIdByUsernameAsync(Username username);
+        Task<UserId?> GetIdByPhoneNumberAsync(PhoneNumber phoneNumber);
         Task UpdateAsync(User user);
     }
 }

@@ -16,14 +16,19 @@ namespace Shared.Types.Errors.Dictionaries.Internals
         public static void Initialize()
         {
             _ = Unknown;
+
             _ = ErrorCodeAlreadyExists;
             _ = ErrorKeyAlreadyExists;
+
             _ = ConfigVariableNotFound;
+
             _ = ServiceNotFound;
             _ = ServiceNotImplemented;
+
+            _ = DependencyNotImplemented;
         }
 
-        public static readonly AppError Unknown =                   AppErrorFactory.CreateUnknown("INTERNAL",                           1_00_00);
+        public static readonly AppError Unknown =                   AppErrorFactory.CreateUnknown("INTERNAL",                           1_00_000);
 
         public static readonly AppError ErrorCodeAlreadyExists =    AppErrorFactory.CreateAlreadyExists("INTERNAL.APP_ERROR.CODE",      1_01_01);
         public static readonly AppError ErrorKeyAlreadyExists =     AppErrorFactory.CreateAlreadyExists("INTERNAL.APP_ERROR.KEY",       1_01_02);
@@ -32,5 +37,7 @@ namespace Shared.Types.Errors.Dictionaries.Internals
 
         public static readonly AppError ServiceNotFound =           AppErrorFactory.CreateNotFound("INTERNAL.SERVICE",                  1_03_00);
         public static readonly AppError ServiceNotImplemented =     AppErrorFactory.CreateNotImplemented("INTERNAL.SERVICE",            1_03_00);
+
+        public static readonly AppError DependencyNotImplemented =  AppErrorFactory.CreateNotImplemented("INTERNAL.DEPENDENCY",         1_04_00);
     }
 }

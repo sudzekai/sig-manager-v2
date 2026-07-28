@@ -17,7 +17,7 @@ namespace Domain.ValueObjects.Roles
         public static Name Default 
             => new();
 
-        public string Value { get; } = String.Empty;
+        public string Value { get; } = string.Empty;
         
         public bool IsValid
         {

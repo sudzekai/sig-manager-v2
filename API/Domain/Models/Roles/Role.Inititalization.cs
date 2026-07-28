@@ -5,7 +5,7 @@ namespace Domain.Models.Roles
 {
     public partial class Role : DomainModelBase
     {
-        public Role(RoleId id, Name name, DateTime createdAt)
+        private Role(RoleId id, Name name, DateTime createdAt)
         {
             Id = id;
             Name = name;
@@ -14,18 +14,17 @@ namespace Domain.Models.Roles
             _initialized = true;
         }
 
-        public Role(Name name, DateTime createdAt)
+        private Role(Name name)
         {
             Name = name;
-            CreatedAt = createdAt;
 
             _initialized = true;
         }
 
-        public static Role Restore(RoleId id, Name name, DateTime createdAt)
+        internal static Role Restore(RoleId id, Name name, DateTime createdAt)
             => new(id, name, createdAt);
 
-        public static Role Create(Name name, DateTime createdAt)
-            => new(name, createdAt);
+        public static Role Create(Name name)
+            => new(name);
     }
 }

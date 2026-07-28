@@ -3,9 +3,8 @@ using Domain.ValueObjects.Users;
 using Infrastructure.Queries.Users;
 using Infrastructure.Repositories.Users;
 using Shared.Dtos.Users;
+using Shared.Types.Errors.ApplicationError.Extensions;
 using Shared.Types.Errors.Dictionaries.Entities;
-using Shared.Types.Errors.Dictionaries.Objects;
-using Shared.Types.Exceptions;
 
 namespace Application.CommandHandlers.Users
 {
@@ -16,25 +15,22 @@ namespace Application.CommandHandlers.Users
     {
         public async Task<UserDto> HandleAsync(UserInfoUpdateCommand command)
         {
-            var user = await repo.GetAsync(UserId.FromValue(command.Id))
-                ?? throw new AppException(EntityErrors.UserNotFound);
+            var user = (await repo.GetAsync(UserId.FromValue(command.Id)))
+                .OrThrowIfNull(EntityErrors.UserNotFound);
 
             var dto = command.Dto;
 
             var username = Username.FromValue(dto.Username);
-
-            if (await repo.GetByUsernameAsync(username) is not null)
-                throw new AppException(EntityErrors.UserUsernameAlreadyExists);
+            (await repo.GetIdByUsernameAsync(username))
+                .ThrowIfNotNull(EntityErrors.UserUsernameAlreadyExists);
 
             var email = Email.FromValue(dto.Email);
-
-            if (await repo.GetByEmailAsync(email) is not null)
-                throw new AppException(EntityErrors.UserEmailAlreadyExists);
+            (await repo.GetIdByEmailAsync(email))
+                .ThrowIfNotNull(EntityErrors.UserEmailAlreadyExists);
 
             var phoneNumber = PhoneNumber.FromValue(dto.PhoneNumber);
-
-            if (await repo.GetByPhoneNumberAsync(phoneNumber) is not null)
-                throw new AppException(EntityErrors.UserPhoneNumberAlreadyExists);
+            (await repo.GetIdByPhoneNumberAsync(phoneNumber))
+                .ThrowIfNotNull(EntityErrors.UserPhoneNumberAlreadyExists);
 
             user.ChangeUsername(username);
             user.ChangeEmail(email);
@@ -43,8 +39,8 @@ namespace Application.CommandHandlers.Users
 
             await repo.UpdateAsync(user);
 
-            return await users.GetByIdAsync(user.Id)
-                ?? throw new AppException(EntityErrors.UserNotFound);
+            return (await users.GetByIdAsync(user.Id))
+                .OrThrowIfNull(EntityErrors.UserNotFound);
         }
     }
 }

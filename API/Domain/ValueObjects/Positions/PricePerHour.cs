@@ -26,8 +26,11 @@ namespace Domain.ValueObjects.Positions
                 if (IsDefault)
                     return true;
 
-                if (Value < 1)
-                    throw new AppException(UserObjectErrors.UserIdIsToSmall);
+                if (Value < 0)
+                    throw new AppException(PositionObjectErrors.PricePerHourIsInvalidTooSmall);
+
+                if (Value > 999.99m)
+                    throw new AppException(PositionObjectErrors.PricePerHourIsInvalidTooLarge);
 
                 return true;
             }
