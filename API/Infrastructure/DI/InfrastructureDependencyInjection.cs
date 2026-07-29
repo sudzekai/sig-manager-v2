@@ -8,7 +8,7 @@ using SqlKata.Compilers;
 
 namespace Infrastructure.DI
 {
-    public static class InfrastructureDependencyInjection
+    public static partial class InfrastructureDependencyInjection
     {
         public static IServiceCollection AddDatabase(this IServiceCollection collection, string connectionString)
         {
@@ -21,19 +21,13 @@ namespace Infrastructure.DI
             return collection;
         }
 
-        public static IServiceCollection AddRepositories(this IServiceCollection collection)
-        {
-            collection.AddScoped<IUserRepository, UserRepository>();
-
-            return collection;
-        }
-
         public static IServiceCollection AddQueries(this IServiceCollection collection)
         {
             collection.AddScoped<IUsersQuery, UsersQuery>();
         
             return collection;
         }
+
         public static IServiceCollection AddUnitOfWork(this IServiceCollection collection)
         {
             collection.AddScoped<IUnitOfWork, UnitOfWork>();

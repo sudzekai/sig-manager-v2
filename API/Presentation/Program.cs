@@ -9,7 +9,6 @@ using Presentation.Internal.Extensions;
 using Presentation.Internal.Utilities.ExceptionHandler;
 using Presentation.Internal.Utilities.Logging;
 using Shared.Types.Errors.Dictionaries;
-using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -40,7 +39,7 @@ namespace Presentation
                 // infrastructure
                 var connectionString = builder.Configuration.GetString("ConnectionStrings:Default");
 
-                builder.Services.AddInfrastructureServices(connectionString);
+                builder.Services.AddInfrastructureServices(connectionString, logger);
 
                 builder.Services.AddLogging(logging =>
                 {
@@ -68,8 +67,8 @@ namespace Presentation
                     options.SuppressModelStateInvalidFilter = true;
                 });
             }
-            
-            
+
+
 
             builder.Services.AddOpenApi();
 

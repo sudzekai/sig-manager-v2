@@ -9,12 +9,12 @@ namespace Presentation.DI
 {
     public static class PresentationDependencyInjection
     {
-        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, string connectionString, ILogger logger)
         {
             services.AddDatabase(connectionString);
             services.AddUnitOfWork();
 
-            services.AddRepositories();
+            services.AddRepositories(logger);
             InfrastructureDependencyInjection.AddQueries(services);
 
             return services;
