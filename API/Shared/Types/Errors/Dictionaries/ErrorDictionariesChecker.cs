@@ -5,6 +5,7 @@ using Shared.Types.Errors.Dictionaries.Objects;
 using Shared.Types.Exceptions;
 using Shared.Utilities.BusinessErrorFactory;
 using System.Reflection;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Shared.Types.Errors.Dictionaries
 {
@@ -43,6 +44,8 @@ namespace Shared.Types.Errors.Dictionaries
 
             int count = 0;
 
+            writer.WriteLine($"CODE, KEY");
+
             foreach (var type in dictionaries)
             {
                 var properties = type
@@ -52,7 +55,7 @@ namespace Shared.Types.Errors.Dictionaries
 
                 foreach (var error in properties.OrderBy(e => e.Code))
                 {
-                    writer.WriteLine($"CODE: {error.Code} | KEY: {error.Key}");
+                    writer.WriteLine($"{error.Code}, {error.Key}");
                     count++;
                 }
                 

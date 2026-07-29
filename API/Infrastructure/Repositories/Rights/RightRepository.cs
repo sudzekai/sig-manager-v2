@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories.Rights
     {
         public async Task<RightId> AddAsync(Right right)
         {
-            var query = new Query("cars")
+            var query = new Query("rights")
                 .AsInsert(new
                 {
                     code = right.Code.Value

@@ -7,4 +7,5 @@
   <Project Path="Infrastructure/Infrastructure.csproj" Id="a5f29be7-96f9-49c5-81ad-01c1e759cccd" />
   <Project Path="Presentation/Presentation.csproj" />
   <Project Path="Shared/Shared.csproj" />
+  <Project Path="Tests/Tests.csproj" Id="2f968da3-f5ba-4f60-bade-70595b13ee0a" />
 </Solution>

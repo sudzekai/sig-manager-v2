@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories.Roles
     {
         public async Task<RoleId> AddAsync(Role role)
         {
-            var query = new Query("cars")
+            var query = new Query("roles")
                 .AsInsert(new
                 {
                     name = role.Name.Value

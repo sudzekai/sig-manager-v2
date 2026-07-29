@@ -28,7 +28,7 @@ namespace Presentation.Controllers.Users
             => await dispatcher.ExecuteAsync<UserDto>(new UserRoleUpdateCommand(id, dto));
 
         [HttpPatch("{id}/password")]
-        public async Task<UserDto> PatchPassword([FromRoute] long id, [FromBody] UserPasswordUpdateDto dto)
-            => await dispatcher.ExecuteAsync<UserDto>(new UserPasswordUpdateCommand(id, dto));
+        public async Task PatchPassword([FromRoute] long id, [FromBody] UserPasswordUpdateDto dto)
+            => await dispatcher.ExecuteAsync<Unit>(new UserPasswordUpdateCommand(id, dto));
     }
 }

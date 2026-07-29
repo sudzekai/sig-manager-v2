@@ -9,6 +9,7 @@ using Presentation.Internal.Extensions;
 using Presentation.Internal.Utilities.ExceptionHandler;
 using Presentation.Internal.Utilities.Logging;
 using Shared.Types.Errors.Dictionaries;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace Presentation
             GlobalExceptionHandler.Register();
 
             ErrorDictionariesChecker.Check();
+            ErrorDictionariesChecker.PrintAllErrors(Console.Out);
 
             var builder = WebApplication.CreateBuilder(args);
 
@@ -61,14 +63,13 @@ namespace Presentation
                 builder.Services.AddControllers(o =>
                 {
                     o.Filters.Add<ExceptionsFilter>();
+                    o.Filters.Add<ResultFilter>();
                 })
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.SuppressModelStateInvalidFilter = true;
                 });
             }
-
-
 
             builder.Services.AddOpenApi();
 

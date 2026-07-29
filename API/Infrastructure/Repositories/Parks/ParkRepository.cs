@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories.Parks
     {
         public async Task<ParkId> AddAsync(Park park)
         {
-            var query = new Query("cars")
+            var query = new Query("parks")
                 .AsInsert(new
                 {
                     name = park.Name.Value

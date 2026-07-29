@@ -23,7 +23,7 @@ namespace Infrastructure.Repositories.Cars
             await using var command = await db.CreateCommandAsync(query);
             await command.ExecuteNonQueryAsync();
 
-            return CarId.FromValue((int)((MySqlCommand)command).LastInsertedId);
+            return car.Id;
         }
 
         public async Task<bool> DeleteAsync(CarId id)

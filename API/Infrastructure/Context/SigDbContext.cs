@@ -36,10 +36,20 @@ namespace Infrastructure.Context
             await EnsureConnectedAsync();
 
             var compiled = _compiler.Compile(query);
+            _logger.LogDebug($"""
+            Executing DB query
+
+            Query:
+            {compiled.Sql}
+
+            Parameters:
+            {string.Join(Environment.NewLine,
+                        compiled.Bindings.Select((x, i) => $"@p{i} = {x ?? "NULL"}"))}
+            """);
 
             MySqlCommand command = _transaction is null
-                        ? new(compiled.Sql, _connection)
-                        : new(compiled.Sql, _connection, _transaction);
+                ? new(compiled.Sql, _connection)
+                : new(compiled.Sql, _connection, _transaction);
 
             for (int i = 0; i < compiled.Bindings.Count; i++)
                 command.Parameters.AddWithValue($"@p{i}", compiled.Bindings[i]);

@@ -13,10 +13,7 @@ namespace Infrastructure.Queries.Users
         {
             var query = new Query("users")
                 .Select("role_id", "username", "email", "full_name", "phone_number")
-                .Where(new
-                {
-                    id = id.Value
-                });
+                .Where("id", id.Value);
 
             await using var command = await db.CreateCommandAsync(query);
             await using var reader = await command.ExecuteReaderAsync();

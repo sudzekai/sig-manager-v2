@@ -24,12 +24,12 @@ namespace Presentation.Filters
             {
                 _logger.LogError(exception.ToString());
 
-                context.Result = ResponseEnvelope.FromError(exception).ToErroredObjectResult();
+                context.Result = ResponseEnvelope<object>.FromError(exception).ToErroredObjectResult();
 
                 return;
             }
 
-            context.Result = ResponseEnvelope.InternalServerError.ToErroredObjectResult();
+            context.Result = ResponseEnvelope<object>.InternalServerError.ToErroredObjectResult();
             _logger.LogError("{Type}: {Message}\n{Full}", ex.GetType().ToString().Split(".").Last(), ex.Message, ex.ToString());
         }
     }

@@ -1,10 +1,10 @@
-﻿using Infrastructure.Repositories.Cars;
-using Infrastructure.Repositories.Parks;
-using Infrastructure.Repositories.Positions;
-using Infrastructure.Repositories.Products;
-using Infrastructure.Repositories.Rights;
-using Infrastructure.Repositories.Roles;
-using Infrastructure.Repositories.Users;
+﻿using Infrastructure.Queries.Cars;
+using Infrastructure.Queries.Parks;
+using Infrastructure.Queries.Positions;
+using Infrastructure.Queries.Products;
+using Infrastructure.Queries.Rights;
+using Infrastructure.Queries.Roles;
+using Infrastructure.Queries.Users;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Shared.Types.Exceptions;
@@ -16,13 +16,13 @@ namespace Infrastructure.DI
     {
         private static readonly Dictionary<Type, Type> _repositories = new()
         {
-            [typeof(ICarRepository)] = typeof(CarRepository),
-            [typeof(IParkRepository)] = typeof(ParkRepository),
-            [typeof(IPositionRepository)] = typeof(PositionRepository),
-            [typeof(IProductRepository)] = typeof(ProductRepository),
-            [typeof(IRightRepository)] = typeof(RightRepository),
-            [typeof(IRoleRepository)] = typeof(RoleRepository),
-            [typeof(IUserRepository)] = typeof(UserRepository)
+            [typeof(ICarsQuery)] = typeof(CarsQuery),
+            [typeof(IParksQuery)] = typeof(ParksQuery),
+            [typeof(IPositionsQuery)] = typeof(PositionsQuery),
+            [typeof(IProductsQuery)] = typeof(ProductsQuery),
+            [typeof(IRightsQuery)] = typeof(RightsQuery),
+            [typeof(IRolesQuery)] = typeof(RolesQuery),
+            [typeof(IUsersQuery)] = typeof(UsersQuery)
         };
 
         public static IServiceCollection AddRepositories(this IServiceCollection services, ILogger logger)

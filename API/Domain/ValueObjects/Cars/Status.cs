@@ -15,7 +15,7 @@ namespace Domain.ValueObjects.Cars
             => new(value);
 
         public static Status Default
-            => new();
+            => new("working");
 
         public static Status Working
             => new("working");
@@ -35,7 +35,7 @@ namespace Domain.ValueObjects.Cars
                 if (string.IsNullOrWhiteSpace(Value))
                     throw new AppException(CarObjectErrors.CarStatusIsRequired);
 
-                if (Value != Working.Value || Value != Broken.Value)
+                if (this != Working || this != Broken)
                     throw new AppException(CarObjectErrors.CarStatusIsInvalid);
 
                 return true;

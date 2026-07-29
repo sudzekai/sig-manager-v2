@@ -53,7 +53,8 @@ namespace Application.DI
             [typeof(ICommandHandler<UserCreateCommand, UserDto>)] = typeof(UserCreateHandler),
             [typeof(ICommandHandler<UserDeleteCommand, Unit>)] = typeof(UserDeleteHandler),
             [typeof(ICommandHandler<UserRoleUpdateCommand, UserDto>)] = typeof(UserRoleUpdateHandler),
-            [typeof(ICommandHandler<UserInfoUpdateCommand, UserDto>)] = typeof(UserInfoUpdateHandler)
+            [typeof(ICommandHandler<UserInfoUpdateCommand, UserDto>)] = typeof(UserInfoUpdateHandler),
+            [typeof(ICommandHandler<UserPasswordUpdateCommand, Unit>)] = typeof(UserPasswordUpdateHandler)
         };
 
         public static IServiceCollection AddCommandHandlers(this IServiceCollection services, ILogger logger)

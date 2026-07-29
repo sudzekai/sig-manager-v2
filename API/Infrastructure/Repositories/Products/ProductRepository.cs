@@ -14,7 +14,7 @@ namespace Infrastructure.Repositories.Products
     {
         public async Task<ProductId> AddAsync(Product product)
         {
-            var query = new Query("cars")
+            var query = new Query("products")
                 .AsInsert(new
                 {
                     name = product.Name.Value,

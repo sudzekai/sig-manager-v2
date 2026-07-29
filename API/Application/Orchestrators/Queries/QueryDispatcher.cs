@@ -16,7 +16,7 @@ namespace Application.Orchestrators.Queries
             dynamic handler = serviceProvider.GetService(handlerType)
               ?? throw new AppException(InternalErrors.ServiceNotFound, $"service {handlerType.Name.Split("`")[0]} for command {query.GetType().Name}");
 
-            return await handler.HandleAsync((dynamic)query);
+            return await handler.QueryAsync((dynamic)query);
         }
     }
 }

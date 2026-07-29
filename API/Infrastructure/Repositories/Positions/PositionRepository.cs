@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories.Positions
     {
         public async Task<PositionId> AddAsync(Position position)
         {
-            var query = new Query("cars")
+            var query = new Query("positions")
                 .AsInsert(new
                 {
                     name = position.Name.Value,

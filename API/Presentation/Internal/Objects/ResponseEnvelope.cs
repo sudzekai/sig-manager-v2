@@ -3,9 +3,11 @@ using Shared.Utilities.BusinessErrorFactory;
 
 namespace Presentation.Internal.Objects
 {
-    internal class ResponseEnvelope
+    public class ResponseEnvelope<T>
     {
-        public ResponseEnvelope(object? data)
+        public ResponseEnvelope() { }
+
+        public ResponseEnvelope(T? data)
         {
             Success = true;
             Data = data;
@@ -17,19 +19,19 @@ namespace Presentation.Internal.Objects
             Error = error;
         }
 
-        public static ResponseEnvelope FromData(object? data) => new(data);
+        public static ResponseEnvelope<T> FromData(T? data) => new(data);
 
-        public static ResponseEnvelope FromError(AppException ex)
+        public static ResponseEnvelope<T> FromError(AppException ex)
         {
             var err = BusinessErrorFactory.ToBusinessException(ex);
             return new(new Error(err.Code, err.Message));
         }
 
-        public static ResponseEnvelope InternalServerError => new(new Error(500, "Внутренняя ошибка сервера"));
-        public static ResponseEnvelope NotImplementedError => new(new Error(501, "Функциональность эндпоинта не реализована"));
+        public static ResponseEnvelope<T> InternalServerError => new(new Error(500, "Внутренняя ошибка сервера"));
+        public static ResponseEnvelope<T> NotImplementedError => new(new Error(501, "Функциональность эндпоинта не реализована"));
 
         public bool Success { get; set; }
-        public object? Data { get; set; }
+        public T? Data { get; set; }
         public Error? Error { get; set; }
     }
 }

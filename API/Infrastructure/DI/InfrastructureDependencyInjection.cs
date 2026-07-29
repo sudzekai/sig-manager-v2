@@ -21,13 +21,6 @@ namespace Infrastructure.DI
             return collection;
         }
 
-        public static IServiceCollection AddQueries(this IServiceCollection collection)
-        {
-            collection.AddScoped<IUsersQuery, UsersQuery>();
-        
-            return collection;
-        }
-
         public static IServiceCollection AddUnitOfWork(this IServiceCollection collection)
         {
             collection.AddScoped<IUnitOfWork, UnitOfWork>();

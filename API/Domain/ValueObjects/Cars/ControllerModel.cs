@@ -35,9 +35,6 @@ namespace Domain.ValueObjects.Cars
                 if (Value.Length > 50)
                     throw new AppException(CarObjectErrors.CarControllerModelIsInvalidTooLarge);
 
-                if (Value.Any(char.IsDigit))
-                    throw new AppException(CarObjectErrors.CarControllerModelIsInvalid);
-
                 return true;
             }
         }

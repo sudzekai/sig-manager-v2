@@ -31,7 +31,7 @@ namespace Application.CommandHandlers.Cars
             ));
 
             return (await cars.GetByIdAsync(createdId))
-                .OrThrowIfNull(EntityErrors.CarNameAlreadyExists);
+                .OrThrowIfNull(EntityErrors.CarNotFound);
         }
     }
 }

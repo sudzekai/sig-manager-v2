@@ -15,7 +15,7 @@ namespace Presentation.DI
             services.AddUnitOfWork();
 
             services.AddRepositories(logger);
-            InfrastructureDependencyInjection.AddQueries(services);
+            services.AddQueries(logger);
 
             return services;
         }
@@ -34,6 +34,7 @@ namespace Presentation.DI
         public static IServiceCollection AddFilters(this IServiceCollection services)
         {
             services.AddScoped<IExceptionFilter, ExceptionsFilter>();
+            services.AddScoped<IResultFilter, ResultFilter>();
             return services;
         }
     }

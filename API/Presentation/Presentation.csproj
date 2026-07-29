@@ -15,7 +15,6 @@
 		<AnalysisLevel>latest</AnalysisLevel>
 		<InvariantGlobalization>true</InvariantGlobalization>
 		
-		<SelfContained>true</SelfContained>
 		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
 
