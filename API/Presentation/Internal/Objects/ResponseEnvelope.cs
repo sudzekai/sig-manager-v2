@@ -23,7 +23,7 @@ namespace Presentation.Internal.Objects
 
         public static ResponseEnvelope<T> FromError(AppException ex)
         {
-            var err = BusinessErrorFactory.ToBusinessException(ex);
+            var err = BusinessExceptionFactory.ToBusinessException(ex);
             return new(new Error(err.Code, err.Message));
         }
 

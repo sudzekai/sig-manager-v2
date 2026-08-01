@@ -26,6 +26,9 @@ namespace Shared.Types.Errors.Dictionaries.Internals
             _ = ServiceNotImplemented;
 
             _ = DependencyNotImplemented;
+
+            _ = RightCodeAlreadyExists;
+            _ = RightKeyAlreadyExists;
         }
 
         public static readonly AppError Unknown =                   AppErrorFactory.CreateUnknown("INTERNAL",                           1_00_000);
@@ -39,5 +42,9 @@ namespace Shared.Types.Errors.Dictionaries.Internals
         public static readonly AppError ServiceNotImplemented =     AppErrorFactory.CreateNotImplemented("INTERNAL.SERVICE",            1_03_00);
 
         public static readonly AppError DependencyNotImplemented =  AppErrorFactory.CreateNotImplemented("INTERNAL.DEPENDENCY",         1_04_00);
+
+        public static readonly AppError RightCodeAlreadyExists =    AppErrorFactory.CreateAlreadyExists("INTERNAL.RIGHT.CODE",          1_05_01);
+        public static readonly AppError RightCodeExistingConflict = AppErrorFactory.CreateConflict("INTERNAL.RIGHT.CODE",               1_05_01);
+        public static readonly AppError RightKeyAlreadyExists =     AppErrorFactory.CreateAlreadyExists("INTERNAL.RIGHT.KEY",           1_05_02);
     }
 }

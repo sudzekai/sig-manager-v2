@@ -1,3 +1,4 @@
+using Domain.Models.Rights;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,7 @@ using Presentation.Filters;
 using Presentation.Internal.Extensions;
 using Presentation.Internal.Utilities.ExceptionHandler;
 using Presentation.Internal.Utilities.Logging;
+using Shared.Types.Errors.ApplicationError;
 using Shared.Types.Errors.Dictionaries;
 using System;
 using System.Reflection;
@@ -22,7 +24,9 @@ namespace Presentation
             GlobalExceptionHandler.Register();
 
             ErrorDictionariesChecker.Check();
-            ErrorDictionariesChecker.PrintAllErrors(Console.Out);
+            AppError.PrintAllErrors(Console.Out);
+
+            Rights.Check();
 
             var builder = WebApplication.CreateBuilder(args);
 

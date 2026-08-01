@@ -41,13 +41,13 @@ namespace Presentation.Internal.Utilities.ExceptionHandler
         {
             var appException = GetAppException(exception);
 
-            if (appException is not null)
+            if (appException != null)
             {
                 LogCritical(appException.ToString());
                 return;
             }
 
-            LogCritical($"{exception.GetType().Name}: {exception.Message}");
+            LogCritical(exception.ToString());
         }
 
         private static AppException? GetAppException(Exception? exception)

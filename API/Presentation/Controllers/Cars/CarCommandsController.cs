@@ -2,6 +2,7 @@
 using Application.Objects;
 using Application.Orchestrators.Commands;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.Internal.Attributes.Authorization;
 using Shared.Dtos.Cars;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Presentation.Controllers.Cars
     public class PositionCommandsController(ICommandDispatcher dispatcher)
     {
         [HttpPost()]
+        [UseAuthorization]
         public async Task<CarDto> Post([FromBody] CarCreateDto body)
             => await dispatcher.ExecuteAsync<CarDto>(new CarCreateCommand(body));
 

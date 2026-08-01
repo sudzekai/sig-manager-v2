@@ -2,6 +2,7 @@
 using Shared.Types.Errors.ApplicationError.Dictionaries;
 using Shared.Types.Errors.Dictionaries.Internals;
 using Shared.Types.Exceptions;
+using Shared.Utilities.BusinessErrorFactory;
 
 namespace Shared.Types.Errors.ApplicationError
 {
@@ -82,5 +83,30 @@ namespace Shared.Types.Errors.ApplicationError
 
         public override string ToString()
             => $"{Code}:{Key}";
+
+        public static void PrintAllErrors(TextWriter writer)
+        {
+            long[] codes = [.. _codes];
+            string[] keys = [.. _keys];
+
+            writer.WriteLine($"CODE;KEY;");
+
+            for (int i = 0; i < codes.Length; i++)
+                writer.WriteLine($"{codes[i]};{keys[i]}");
+        }
+
+        public static void PrintAllErrorsWithBusinessMessage(TextWriter writer)
+        {
+            int[] codes = [.. _codes];
+            string[] keys = [.. _keys];
+
+            writer.WriteLine($"CODE;KEY;HTTP;MESSAGE");
+
+            for (int i = 0; i < codes.Length; i++)
+            {
+                var ex = BusinessExceptionFactory.ToBusinessException(new AppException(new AppError(keys[i], codes[i])));
+                writer.WriteLine($"{codes[i]};{keys[i]};{ex.Code};{ex.Message}");
+            }
+        }
     }
 }

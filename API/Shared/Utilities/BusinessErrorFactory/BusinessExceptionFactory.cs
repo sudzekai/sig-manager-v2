@@ -6,7 +6,7 @@ using System.Net;
 
 namespace Shared.Utilities.BusinessErrorFactory
 {
-    public class BusinessErrorFactory
+    public class BusinessExceptionFactory
     {
         public static BusinessException ToBusinessException(AppException ex)
         {
